@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Dashboard{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="col-12">
+        <section class="card">
+            <header class="card-header">
+                <div class="card-actions">
+                    <a href="#" class="card-action card-action-toggle" data-card-toggle=""></a>
+                    <a href="#" class="card-action card-action-dismiss" data-card-dismiss=""></a>
+                </div>
+
+                <h2 class="card-title">PDS Form Log</h2>
+            </header>
+            <div class="card-body">
+                <table class="table table-responsive-md mb-0">
+                    <thead>
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Date of Birth</th>
+                            <th>Sex</th>
+                            <th>Telephone Number</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for feedback in feedbacks %}
+                        <tr>
+                            <td>{{ feedback['first_name'] + " " + feedback['middle_name'] + " " + feedback['surname']}}</td>
+                            <td>{{ feedback['division']}}</td>
+                            <td>{{ feedback['quarter'] }}</td>
+                            <th>{{ feedback['incident_date']}}</th>
+                            <td class="actions text-end">
+                                <a href="{{ url_for('getFeedback', feedback_id=feedback['uid']) }}"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="{{ url_for('deleteFeedback', feedback_id=feedback['uid']) }}" class="delete-row"><i class="far fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</div>
+
+{% endblock %}

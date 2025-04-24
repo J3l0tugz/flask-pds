@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Feedback Form{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+<div class="container my-1">
+    <!-- Personal Information -->
+    <form action="">
+        <div class="row">
+            <div class="col">
+                <section class="card">
+                    <header class="card-header">
+                        <div class="card-actions">
+                            <a href="#" class="card-action card-action-toggle" data-card-toggle=""></a>
+                            <a href="#" class="card-action card-action-dismiss" data-card-dismiss=""></a>
+                        </div>
+
+                        <h2 class="card-title">Personal Information</h2>
+                    </header>
+                    <div class="card-body">
+                        <!-- Personal Information -->
+                        <h5 class="mb-3">Personal Information</h5>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="surname" class="form-label">Surname</label>
+                                <input disabled type="text" class="form-control" id="surname" name="surname" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="first-name" class="form-label">First Name</label>
+                                <input disabled type="text" class="form-control" id="first-name" name="first_name" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="middle-name" class="form-label">Middle Name</label>
+                                <input disabled type="text" class="form-control" id="middle-name" name="middle_name">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="birthdate" class="form-label">Date of Birth</label>
+                                <input disabled type="date" class="form-control" id="birthdate" name="birthdate" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="sex" class="form-label">Sex</label>
+                                <select class="form-select" id="sex" name="sex" required>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="civil-status" class="form-label">Civil Status</label>
+                                <select class="form-select" id="civil-status" name="civil_status" required>
+                                    <option value="Single">Single</option>
+                                    <option value="Married">Married</option>
+                                    <option value="Widowed">Widowed</option>
+                                    <option value="Separated">Separated</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="residential-address" class="form-label">Residential Address</label>
+                                <input disabled type="text" class="form-control" id="residential-address" name="residential_address" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="zip-code" class="form-label">ZIP Code</label>
+                                <input disabled type="text" class="form-control" id="zip-code" name="zip_code">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="telephone" class="form-label">Telephone</label>
+                                <input disabled type="text" class="form-control" id="telephone" name="telephone">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Family Background -->
+        <div class="row">
+            <div class="col">
+                <section class="card">
+                    <header class="card-header">
+                        <div class="card-actions">
+                            <a href="#" class="card-action card-action-toggle" data-card-toggle=""></a>
+                            <a href="#" class="card-action card-action-dismiss" data-card-dismiss=""></a>
+                        </div>
+
+                        <h2 class="card-title">Family Background</h2>
+                    </header>
+                    <div class="card-body">
+                        <!-- Family Background -->
+                        <h5 class="mb-3">Family Background</h5>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="spouse-name" class="form-label">Spouse's Name</label>
+                                <input disabled type="text" class="form-control" id="spouse-name" name="spouse_name">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="occupation" class="form-label">Occupation</label>
+                                <input disabled type="text" class="form-control" id="occupation" name="occupation">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="employer-name" class="form-label">Employer/Business Name</label>
+                                <input disabled type="text" class="form-control" id="employer-name" name="employer_name">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="father-name" class="form-label">Father's Name</label>
+                                <input disabled type="text" class="form-control" id="father-name" name="father_name">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="mother-name" class="form-label">Mother's Name</label>
+                                <input disabled type="text" class="form-control" id="mother-name" name="mother_name">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Educational Background -->
+        <div class="row">
+            <div class="col">
+                <section class="card">
+                    <header class="card-header">
+                        <div class="card-actions">
+                            <a href="#" class="card-action card-action-toggle" data-card-toggle=""></a>
+                            <a href="#" class="card-action card-action-dismiss" data-card-dismiss=""></a>
+                        </div>
+
+                        <h2 class="card-title">Educational Background</h2>
+                    </header>
+                    <div class="card-body">
+                        <!-- Educational Background -->
+                        <h5 class="mb-3">Educational Background</h5>
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Level</th>
+                                    <th>Name of School</th>
+                                    <th>Degree/Course</th>
+                                    <th>Year Graduated</th>
+                                    <th>Honors Received</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Elementary</td>
+                                    <td><input disabled type="text" class="form-control" name="elementary_school"></td>
+                                    <td><input disabled type="text" class="form-control" name="elementary_degree"></td>
+                                    <td><input disabled type="text" class="form-control" name="elementary_year"></td>
+                                    <td><input disabled type="text" class="form-control" name="elementary_honors"></td>
+                                </tr>
+                                <tr>
+                                    <td>High School</td>
+                                    <td><input disabled type="text" class="form-control" name="highschool_school"></td>
+                                    <td><input disabled type="text" class="form-control" name="highschool_degree"></td>
+                                    <td><input disabled type="text" class="form-control" name="highschool_year"></td>
+                                    <td><input disabled type="text" class="form-control" name="highschool_honors"></td>
+                                </tr>
+                                <tr>
+                                    <td>College</td>
+                                    <td><input disabled type="text" class="form-control" name="college_school"></td>
+                                    <td><input disabled type="text" class="form-control" name="college_degree"></td>
+                                    <td><input disabled type="text" class="form-control" name="college_year"></td>
+                                    <td><input disabled type="text" class="form-control" name="college_honors"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col">
+                <div class="text-end">
+                    <button id="editButton" class="btn btn-success">Edit</button>
+                </div>
+            </div>
+            <div class="col d-none">
+                <div class="text-end">
+                    <input type="submit" id="submitButton" class="btn btn-primary">
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='jquery/jquery-3.7.1.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        $('#editButton').click(function(e) {
+            e.preventDefault(); 
+            $('input,disabled  textarea, select').prop('disabled', false); 
+            $('#submitButton').closest('.col').removeClass('d-none'); 
+            $('#editButton').closest('.col').addClass('d-none'); 
+        });
+    });
+
+</script>
+
+{% endblock %}
