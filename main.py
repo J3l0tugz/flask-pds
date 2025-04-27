@@ -59,7 +59,7 @@ def dashboard():
     headers = {'Authorization': f'Bearer {token}'}
     response = requests.get(f'{AUTH_SERVER}/dashboard', headers=headers)
     if response.status_code == 200:
-        return render_template('dashboard.html', username=response.json().get('username'), feedbacks=response.json().get('data'))
+        return render_template('dashboard.html', username=response.json().get('username'), data_sheets=response.json().get('data'))
     return redirect(url_for('login'))
 
 @client_app.route('/pds-form')
@@ -73,77 +73,120 @@ def pdsForm():
         return render_template('pds-form.html', username=response.json().get('username'))
     return redirect(url_for('dashboard'))
 
-@client_app.route('/add-feedback', methods = ['POST', 'GET'])
-def addFeedback():
+@client_app.route('/add-pds', methods = ['POST', 'GET'])
+def addpds():
     token = session.get('token')
     if not token:
         return redirect(url_for('login'))
     if request.method == 'POST':
         headers = {'Authorization': f'Bearer {token}'}
         now = datetime.now()
-        data = {'surname': request.form['surname'], 
-                'first_name': request.form['first_name'],
-                'middle_name': request.form['middle_name'],
-                'division': request.form['division'],
-                'quarter': request.form['quarter'],
-                'gist': request.form['gist'],
-                'incident_date': request.form['incident_date'],
-                'recommended': request.form['recommended'],
-                'target_date': request.form['target_date'],
-                'date_created': now.strftime('%m/%d/%Y')}
-        response = requests.post(f'{AUTH_SERVER}/add-feedback', headers=headers, json=data)
-        if response.status_code == 201:
-            flash('Added feedback', 'success')
-            return redirect(url_for('dashboard'))
-        flash('Error while adding feedback', 'danger')
-        return redirect(url_for('feedbackForm'))
+        data = {
+                    'surname': request.form['surname'],
+                    'first_name': request.form['first_name'],
+                    'middle_name': request.form['middle_name'],
+                    'birthdate': request.form['birthdate'],
+                    'sex': request.form['sex'],
+                    'civil_status': request.form['civil_status'],
+                    'residential_address': request.form['residential_address'],
+                    'zip_code': request.form['zip_code'],
+                    'telephone': request.form['telephone'],
+                    'spouse_name': request.form['spouse_name'],
+                    'occupation': request.form['occupation'],
+                    'employer_name': request.form['employer_name'],
+                    'father_name': request.form['father_name'],
+                    'mother_name': request.form['mother_name'],
+                    
+                    'elementary_school': request.form['elementary_school'],
+                    'elementary_degree': request.form['elementary_degree'],
+                    'elementary_year': request.form['elementary_year'],
+                    'elementary_honors': request.form['elementary_honors'],
 
-@client_app.route('/get-feedback/<feedback_id>', methods=['POST', 'GET'])
-def getFeedback(feedback_id):
+                    'highschool_school': request.form['highschool_school'],
+                    'highschool_degree': request.form['highschool_degree'],
+                    'highschool_year': request.form['highschool_year'],
+                    'highschool_honors': request.form['highschool_honors'],
+
+                    'college_school': request.form['college_school'],
+                    'college_degree': request.form['college_degree'],
+                    'college_year': request.form['college_year'],
+                    'college_honors': request.form['college_honors'],
+
+                    'date_created': now.strftime('%m/%d/%Y')}
+        response = requests.post(f'{AUTH_SERVER}/add-pds', headers=headers, json=data)
+        if response.status_code == 201:
+            flash('Added Personal Data Sheet', 'success')
+            return redirect(url_for('dashboard'))
+        flash('Error while adding Personal Data Sheet', 'danger')
+        return redirect(url_for('pdsForm'))
+
+@client_app.route('/get-pds/<pds_id>', methods=['POST', 'GET'])
+def getpds(pds_id):
     token = session.get('token')
     if not token:
         return redirect(url_for('login'))
     headers = {'Authorization': f'Bearer {token}'}
     if request.method == 'GET':
-        response = requests.get(f'{AUTH_SERVER}/get-feedback/{feedback_id}', headers=headers)
+        response = requests.get(f'{AUTH_SERVER}/get-pds/{pds_id}', headers=headers)
         if response.status_code == 200:
             return render_template('view-form.html', username=response.json().get('username'), data=response.json().get('data'))
         return redirect(url_for('dashboard'))
     
-@client_app.route('/update-feedback/<feedback_id>', methods=['POST', 'GET'])
-def updateFeedback(feedback_id):
+@client_app.route('/update-pds/<pds_id>', methods=['POST', 'GET'])
+def updatepds(pds_id):
     token = session.get('token')
     if not token:
         return redirect(url_for('login'))
     if request.method == 'POST':
         headers = {'Authorization': f'Bearer {token}'}
-        data = {'surname': request.form['surname'], 
-                'first_name': request.form['first_name'],
-                'middle_name': request.form['middle_name'],
-                'division': request.form['division'],
-                'quarter': request.form['quarter'],
-                'gist': request.form['gist'],
-                'incident_date': request.form['incident_date'],
-                'recommended': request.form['recommended'],
-                'target_date': request.form['target_date'],}
-        response = requests.post(f'{AUTH_SERVER}/update-feedback/{feedback_id}', headers=headers, json=data)
+        data = {
+                    'surname': request.form['surname'],
+                    'first_name': request.form['first_name'],
+                    'middle_name': request.form['middle_name'],
+                    'birthdate': request.form['birthdate'],
+                    'sex': request.form['sex'],
+                    'civil_status': request.form['civil_status'],
+                    'residential_address': request.form['residential_address'],
+                    'zip_code': request.form['zip_code'],
+                    'telephone': request.form['telephone'],
+                    'spouse_name': request.form['spouse_name'],
+                    'occupation': request.form['occupation'],
+                    'employer_name': request.form['employer_name'],
+                    'father_name': request.form['father_name'],
+                    'mother_name': request.form['mother_name'],
+                    
+                    'elementary_school': request.form['elementary_school'],
+                    'elementary_degree': request.form['elementary_degree'],
+                    'elementary_year': request.form['elementary_year'],
+                    'elementary_honors': request.form['elementary_honors'],
+
+                    'highschool_school': request.form['highschool_school'],
+                    'highschool_degree': request.form['highschool_degree'],
+                    'highschool_year': request.form['highschool_year'],
+                    'highschool_honors': request.form['highschool_honors'],
+
+                    'college_school': request.form['college_school'],
+                    'college_degree': request.form['college_degree'],
+                    'college_year': request.form['college_year'],
+                    'college_honors': request.form['college_honors'],}
+        response = requests.post(f'{AUTH_SERVER}/update-pds/{pds_id}', headers=headers, json=data)
         if response.status_code == 200:
-            flash('Updated feedback', 'success')
+            flash('Updated pds', 'success')
             return redirect(url_for('dashboard'))
-        flash('Error while updating feedback', 'danger')
-        return redirect(url_for('getFeedback', feedback_id=feedback_id))
+        flash('Error while updating pds', 'danger')
+        return redirect(url_for('getpds', pds_id=pds_id))
     
-@client_app.route('/delete-feedback/<feedback_id>')
-def deleteFeedback(feedback_id):
+@client_app.route('/delete-pds/<pds_id>')
+def deletepds(pds_id):
     token = session.get('token')
     if not token:
         return redirect(url_for('login'))
     headers = {'Authorization': f'Bearer {token}'}
-    response = requests.get(f'{AUTH_SERVER}/delete-feedback/{feedback_id}', headers=headers)
+    response = requests.get(f'{AUTH_SERVER}/delete-pds/{pds_id}', headers=headers)
     if response.status_code == 200:
-        flash('Deleted feedback', 'success')
+        flash('Deleted pds', 'success')
         return redirect(url_for('dashboard'))
-    flash('Erro while deleting feedback', 'danger')
+    flash('Erro while deleting pds', 'danger')
     return jsonify(response.json()), response.status_code
 
 if __name__ == '__main__':
