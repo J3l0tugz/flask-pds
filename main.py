@@ -59,7 +59,7 @@ def dashboard():
     headers = {'Authorization': f'Bearer {token}'}
     response = requests.get(f'{AUTH_SERVER}/dashboard', headers=headers)
     if response.status_code == 200:
-        return render_template('dashboard.html', username=response.json().get('username'), feedbacks=response.json().get('data'))
+        return render_template('dashboard.html', username=response.json().get('username'), data_sheets=response.json().get('data'))
     return redirect(url_for('login'))
 
 @client_app.route('/pds-form')
@@ -73,8 +73,8 @@ def pdsForm():
         return render_template('pds-form.html', username=response.json().get('username'))
     return redirect(url_for('dashboard'))
 
-@client_app.route('/add-feedback', methods = ['POST', 'GET'])
-def addFeedback():
+@client_app.route('/add-pds', methods = ['POST', 'GET'])
+def addpds():
     token = session.get('token')
     if not token:
         return redirect(url_for('login'))
@@ -91,21 +91,21 @@ def addFeedback():
                 'recommended': request.form['recommended'],
                 'target_date': request.form['target_date'],
                 'date_created': now.strftime('%m/%d/%Y')}
-        response = requests.post(f'{AUTH_SERVER}/add-feedback', headers=headers, json=data)
+        response = requests.post(f'{AUTH_SERVER}/add-pds', headers=headers, json=data)
         if response.status_code == 201:
-            flash('Added feedback', 'success')
+            flash('Added Personal Data Sheet', 'success')
             return redirect(url_for('dashboard'))
-        flash('Error while adding feedback', 'danger')
-        return redirect(url_for('feedbackForm'))
+        flash('Error while adding Personal Data Sheet', 'danger')
+        return redirect(url_for('pdsForm'))
 
-@client_app.route('/get-feedback/<feedback_id>', methods=['POST', 'GET'])
-def getFeedback(feedback_id):
+@client_app.route('/get-pds/<pds_id>', methods=['POST', 'GET'])
+def getpds(pds_id):
     token = session.get('token')
     if not token:
         return redirect(url_for('login'))
     headers = {'Authorization': f'Bearer {token}'}
     if request.method == 'GET':
-        response = requests.get(f'{AUTH_SERVER}/get-feedback/{feedback_id}', headers=headers)
+        response = requests.get(f'{AUTH_SERVER}/get-pds/{pds_id}', headers=headers)
         if response.status_code == 200:
             return render_template('view-form.html', username=response.json().get('username'), data=response.json().get('data'))
         return redirect(url_for('dashboard'))
