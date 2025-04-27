@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Feedback Form{% endblock %}</h1>
+  <h1>{% block title %}pds Form{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
 
 <div class="container my-1">
     <!-- Personal Information -->
-    <form action="">
+    <form action="{{ url_for('updatepds', pds_id=data['uid'])}}" method="POST">
         <div class="row">
             <div class="col">
                 <section class="card">
@@ -26,32 +26,34 @@
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="surname" class="form-label">Surname</label>
-                                <input disabled type="text" class="form-control" id="surname" name="surname" required>
+                                <input value="{{ data['surname']}}" disabled type="text" class="form-control" id="surname" name="surname" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="first-name" class="form-label">First Name</label>
-                                <input disabled type="text" class="form-control" id="first-name" name="first_name" required>
+                                <input value="{{ data['first_name']}}" disabled type="text" class="form-control" id="first-name" name="first_name" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="middle-name" class="form-label">Middle Name</label>
-                                <input disabled type="text" class="form-control" id="middle-name" name="middle_name">
+                                <input value="{{ data['middle_name']}}" disabled type="text" class="form-control" id="middle-name" name="middle_name">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="birthdate" class="form-label">Date of Birth</label>
-                                <input disabled type="date" class="form-control" id="birthdate" name="birthdate" required>
+                                <input value="{{ data['birthdate']}}" disabled type="date" class="form-control" id="birthdate" name="birthdate" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="sex" class="form-label">Sex</label>
-                                <select class="form-select" id="sex" name="sex" required>
+                                <select disabled class="form-select" id="sex" name="sex" required>
+                                    <option value="{{ data['sex'] }}" selected hidden>{{ data['sex'] }}</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <label for="civil-status" class="form-label">Civil Status</label>
-                                <select class="form-select" id="civil-status" name="civil_status" required>
+                                <select disabled class="form-select" id="civil-status" name="civil_status" required>
+                                    <option value="{{ data['civil_status']}}" selected hidden>{{ data['civil_status'] }}</option>
                                     <option value="Single">Single</option>
                                     <option value="Married">Married</option>
                                     <option value="Widowed">Widowed</option>
@@ -63,15 +65,15 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="residential-address" class="form-label">Residential Address</label>
-                                <input disabled type="text" class="form-control" id="residential-address" name="residential_address" required>
+                                <input value="{{data['residential_address']}}" disabled type="text" class="form-control" id="residential-address" name="residential_address" required>
                             </div>
                             <div class="col-md-3">
                                 <label for="zip-code" class="form-label">ZIP Code</label>
-                                <input disabled type="text" class="form-control" id="zip-code" name="zip_code">
+                                <input value="{{data['zip_code']}}" disabled type="text" class="form-control" id="zip-code" name="zip_code">
                             </div>
                             <div class="col-md-3">
                                 <label for="telephone" class="form-label">Telephone</label>
-                                <input disabled type="text" class="form-control" id="telephone" name="telephone">
+                                <input value="{{data['telephone']}}" disabled type="text" class="form-control" id="telephone" name="telephone">
                             </div>
                         </div>
                     </div>
@@ -97,25 +99,25 @@
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="spouse-name" class="form-label">Spouse's Name</label>
-                                <input disabled type="text" class="form-control" id="spouse-name" name="spouse_name">
+                                <input value="{{data['spouse_name']}}" disabled type="text" class="form-control" id="spouse-name" name="spouse_name">
                             </div>
                             <div class="col-md-4">
                                 <label for="occupation" class="form-label">Occupation</label>
-                                <input disabled type="text" class="form-control" id="occupation" name="occupation">
+                                <input value="{{data['occupation']}}" disabled type="text" class="form-control" id="occupation" name="occupation">
                             </div>
                             <div class="col-md-4">
                                 <label for="employer-name" class="form-label">Employer/Business Name</label>
-                                <input disabled type="text" class="form-control" id="employer-name" name="employer_name">
+                                <input value="{{data['employer_name']}}" disabled type="text" class="form-control" id="employer-name" name="employer_name">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="father-name" class="form-label">Father's Name</label>
-                                <input disabled type="text" class="form-control" id="father-name" name="father_name">
+                                <input value="{{data['father_name']}}" disabled type="text" class="form-control" id="father-name" name="father_name">
                             </div>
                             <div class="col-md-6">
                                 <label for="mother-name" class="form-label">Mother's Name</label>
-                                <input disabled type="text" class="form-control" id="mother-name" name="mother_name">
+                                <input value="{{data['mother_name']}}" disabled type="text" class="form-control" id="mother-name" name="mother_name">
                             </div>
                         </div>
                     </div>
@@ -151,24 +153,24 @@
                             <tbody>
                                 <tr>
                                     <td>Elementary</td>
-                                    <td><input disabled type="text" class="form-control" name="elementary_school"></td>
-                                    <td><input disabled type="text" class="form-control" name="elementary_degree"></td>
-                                    <td><input disabled type="text" class="form-control" name="elementary_year"></td>
-                                    <td><input disabled type="text" class="form-control" name="elementary_honors"></td>
+                                    <td><input value="{{data['elementary_school']}}" disabled type="text" class="form-control" name="elementary_school"></td>
+                                    <td><input value="{{data['elementary_degree']}}" disabled type="text" class="form-control" name="elementary_degree"></td>
+                                    <td><input value="{{data['elementary_year']}}" disabled type="text" class="form-control" name="elementary_year"></td>
+                                    <td><input value="{{data['elementary_honors']}}" disabled type="text" class="form-control" name="elementary_honors"></td>
                                 </tr>
                                 <tr>
                                     <td>High School</td>
-                                    <td><input disabled type="text" class="form-control" name="highschool_school"></td>
-                                    <td><input disabled type="text" class="form-control" name="highschool_degree"></td>
-                                    <td><input disabled type="text" class="form-control" name="highschool_year"></td>
-                                    <td><input disabled type="text" class="form-control" name="highschool_honors"></td>
+                                    <td><input value="{{data['highschool_school']}}" disabled type="text" class="form-control" name="highschool_school"></td>
+                                    <td><input value="{{data['highschool_degree']}}" disabled type="text" class="form-control" name="highschool_degree"></td>
+                                    <td><input value="{{data['highschool_year']}}" disabled type="text" class="form-control" name="highschool_year"></td>
+                                    <td><input value="{{data['highschool_honors']}}" disabled type="text" class="form-control" name="highschool_honors"></td>
                                 </tr>
                                 <tr>
                                     <td>College</td>
-                                    <td><input disabled type="text" class="form-control" name="college_school"></td>
-                                    <td><input disabled type="text" class="form-control" name="college_degree"></td>
-                                    <td><input disabled type="text" class="form-control" name="college_year"></td>
-                                    <td><input disabled type="text" class="form-control" name="college_honors"></td>
+                                    <td><input value="{{data['college_school']}}" disabled type="text" class="form-control" name="college_school"></td>
+                                    <td><input value="{{data['college_degree']}}" disabled type="text" class="form-control" name="college_degree"></td>
+                                    <td><input value="{{data['college_year']}}" disabled type="text" class="form-control" name="college_year"></td>
+                                    <td><input value="{{data['college_honors']}}" disabled type="text" class="form-control" name="college_honors"></td>
                                 </tr>
                             </tbody>
                         </table>

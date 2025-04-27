@@ -30,13 +30,13 @@
                     <tbody>
                         {% for pds in data_sheets %}
                         <tr>
-                            <td>{{ feedback['first_name'] + " " + feedback['middle_name'] + " " + feedback['surname']}}</td>
-                            <td>{{ feedback['division']}}</td>
-                            <td>{{ feedback['quarter'] }}</td>
-                            <th>{{ feedback['incident_date']}}</th>
+                            <td>{{ pds['first_name'] + " " + pds['middle_name'] + " " + pds['surname']}}</td>
+                            <td>{{ pds['birthdate']}}</td>
+                            <td>{{ pds['sex'] }}</td>
+                            <th>{{ pds['telephone']}}</th>
                             <td class="actions text-end">
-                                <a href="{{ url_for('getFeedback', feedback_id=feedback['uid']) }}"><i class="fas fa-pencil-alt"></i></a>
-                                <a href="{{ url_for('deleteFeedback', feedback_id=feedback['uid']) }}" class="delete-row"><i class="far fa-trash-alt"></i></a>
+                                <a href="{{ url_for('getpds', pds_id=pds['uid']) }}"><i class="fas fa-pencil-alt"></i></a>
+                                <a href="{{ url_for('deletepds', pds_id=pds['uid']) }}" class="delete-row"><i class="far fa-trash-alt"></i></a>
                             </td>
                         </tr>
                         {% endfor %}

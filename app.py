@@ -96,8 +96,9 @@ class Dashboard(Resource):
                     'surname': pds.surname,
                     'first_name': pds.first_name,
                     'middle_name': pds.middle_name,
+                    'birthdate': pds.birthdate,
                     'sex': pds.sex,
-                    'quarter': pds.tele,
+                    'telephone': pds.telephone,
 
                     'date_created': pds.date_created
                 })
@@ -221,36 +222,36 @@ class UpdatePersonalDataSheet(Resource):
             pds = PersonalDataSheet.nodes.get_or_none(uid=pds_id)
 
             if pds and pds in user.filled_pds.all():                
-                pds.surname=data.get('surname', pds.surname),
-                pds.first_name = data.get('first_name', pds.first_name),
-                pds.middle_name=data.get('middle_name', pds.middle_name),
-                pds.birthdate = data.get('birthdate', pds.birthdate),  
-                pds.sex = data.get('sex', pds.sex),
-                pds.civil_status = data.get('civil_status', pds.civil_status),
-                pds.residential_address = data.get('residential_address', pds.residential_address),
-                pds.zip_code = data.get('zip_code', pds.zip_code),
-                pds.telephone = data.get('telephone', pds.telephone),
+                pds.surname=data.get('surname', pds.surname)
+                pds.first_name = data.get('first_name', pds.first_name)
+                pds.middle_name=data.get('middle_name', pds.middle_name)
+                pds.birthdate = data.get('birthdate', pds.birthdate)
+                pds.sex = data.get('sex', pds.sex)
+                pds.civil_status = data.get('civil_status', pds.civil_status)
+                pds.residential_address = data.get('residential_address', pds.residential_address)
+                pds.zip_code = data.get('zip_code', pds.zip_code)
+                pds.telephone = data.get('telephone', pds.telephone)
                 
-                pds.spouse_name = data.get('spouse_name', pds.spouse_name),
-                pds.occupation = data.get('occupation', pds.occupation),
-                pds.employer_name = data.get('employer_name', pds.employer_name),
-                pds.father_name = data.get('father_name', pds.father_name),
-                pds.mother_name = data.get('mother_name', pds.mother_name),
+                pds.spouse_name = data.get('spouse_name', pds.spouse_name)
+                pds.occupation = data.get('occupation', pds.occupation)
+                pds.employer_name = data.get('employer_name', pds.employer_name)
+                pds.father_name = data.get('father_name', pds.father_name)
+                pds.mother_name = data.get('mother_name', pds.mother_name)
                 
-                pds.elementary_school = data.get('elementary_school', pds.elementary_school),
-                pds.elementary_degree = data.get('elementary_degree', pds.elementary_degree),
-                pds.elementary_year = data.get('elementary_year', pds.elementary_year),
-                pds.elementary_honors = data.get('elementary_honors', pds.elementary_honors),
+                pds.elementary_school = data.get('elementary_school', pds.elementary_school)
+                pds.elementary_degree = data.get('elementary_degree', pds.elementary_degree)
+                pds.elementary_year = data.get('elementary_year', pds.elementary_year)
+                pds.elementary_honors = data.get('elementary_honors', pds.elementary_honors)
 
-                pds.highschool_school = data.get('highschool_school', pds.highschool_school),
-                pds.highschool_degree = data.get('highschool_degree', pds.highschool_degree),
-                pds.highschool_year = data.get('highschool_year', pds.highschool_year),
-                pds.highschool_honors = data.get('highschool_honors', pds.highschool_honors),
+                pds.highschool_school = data.get('highschool_school', pds.highschool_school)
+                pds.highschool_degree = data.get('highschool_degree', pds.highschool_degree)
+                pds.highschool_year = data.get('highschool_year', pds.highschool_year)
+                pds.highschool_honors = data.get('highschool_honors', pds.highschool_honors)
 
-                pds.college_school = data.get('college_school', pds.college_school),
-                pds.college_degree = data.get('college_degree', pds.college_degree),
-                pds.college_year = data.get('college_year', pds.college_year),
-                pds.college_honors = data.get('college_honors', pds.college_honors),
+                pds.college_school = data.get('college_school', pds.college_school)
+                pds.college_degree = data.get('college_degree', pds.college_degree)
+                pds.college_year = data.get('college_year', pds.college_year)
+                pds.college_honors = data.get('college_honors', pds.college_honors)
 
                 pds.date_created=data.get('date_created', pds.date_created)
                 pds.save() 

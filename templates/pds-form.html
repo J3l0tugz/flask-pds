@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Feedback Form{% endblock %}</h1>
+  <h1>{% block title %}pds Form{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
 
 <div class="container my-1">
     <!-- Personal Information -->
-    <form action="">
+    <form action="{{ url_for('addpds') }}" method="POST">
         <div class="row">
             <div class="col">
                 <section class="card">
